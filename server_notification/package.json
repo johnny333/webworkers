@@ -1,0 +1,17 @@
+{
+  "name": "server_notification",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "lodash": "^4.17.5",
+    "node-json-db": "^0.7.5",
+    "nodemon": "^1.17.2",
+    "uuid": "^3.2.1"
+  }
+}

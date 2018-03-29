@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title of the document</title>
+    <link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css">
+</head>
+
+<body>
+
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./node_modules/materialize-css/dist/js/materialize.min.js"></script>
+<video width="640" height="360" src="https://www.youtube.com/embed/yV0x3KO_gmg"   ></video>
+<br>
+
+<div  style="height: 50px"  class="progress">
+    <div class="indeterminate"></div>
+</div>
+<button class="btn btn-large" id="no">wykonaj bez webworkera</button>
+<button class="btn btn-large" id="with">wykonaj z webworkerem</button>
+<button class="btn btn-large" id="subscribe">subskrybuj</button>
+<script>
+        navigator.serviceWorker.register('/worker.js');
+    $("#no").click(function (e) {
+        var start = performance.now();
+        while (performance.now() - start < 10000) ;
+        var notification2 = new Notification("Zwracam wynik");
+
+    })
+
+    $("#with").click(function (e) {
+        var worker = new Worker("./worker.js");
+        worker.postMessage(10000);
+        worker.addEventListener('message', function(e) {
+            var notification = new Notification(e.data);
+        }, false);
+    })
+
+    $("#subscribe").click(function (e) {
+        navigator.serviceWorker.register('./notification-worker.js');
+    })
+
+</script>
+</body>
+
+</html>
